@@ -1,0 +1,56 @@
+*{margin: 0%; padding: 0%; font-family: 'Andika';}
+body{
+    background-color: #162447;
+    display: flex;
+    justify-content: center;
+}
+.login{
+    margin-top: 10%;
+    background: rgb(228,63,80);
+    background: linear-gradient(163deg, rgba(228,63,80,1) 0%, rgba(162,8,24,1) 120%);
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    border-radius: 90px;
+    padding: 5% 1% 6% 1%;
+}
+form{
+    width: 70%;
+    display: grid;
+    justify-content: center;
+    padding: 2%;
+}
+label{
+    padding-bottom: 6%;
+    display: flex;
+    justify-content: center;
+    font-weight: 530;
+    font-size: 350%;
+}
+input,button{
+    background-color: transparent;
+    border: none;
+    font-size: 150%;
+}
+input{
+    padding: 0% 1%;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin-bottom: 6%;
+}
+input::placeholder,input,button,label{
+    color: whitesmoke;
+    outline: none;
+}
+button{
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    width: 60%;
+    padding: 3% 0;
+    border: solid 1px whitesmoke;
+}
+@media screen and (max-width: 768px){
+    .login{margin-top: 0%;
+        border-radius: 0 0 90px 90px;}
+    input{margin-bottom: 4%;}
+}

@@ -110,7 +110,7 @@ const listBind = async (type) =>{
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            console.log(data==[])
+            //console.log(data==[])
             const data = await response.json();
             let htmlstring="";
             data.forEach((element) =>{

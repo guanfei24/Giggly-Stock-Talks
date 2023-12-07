@@ -91,26 +91,16 @@ socket.on('last',(ls)=>{
         document.getElementById('user').innerHTML = `${l_online}`
     }, 3000);
 })
-const listBind = async (type) =>{
-    if(symbol_input.value.length >= 1 && !favorite.includes(symbol_input.value,0)){
-        if(type=1){
-            console.log(favorite.length)
-            if(favorite.length > 0){
-                favorite += ',' + symbol_input.value
-            }else{
-                favorite = symbol_input.value
-            }
-            symbol_input.value = ''
-        }
-        console.log(favorite)
-        const apiUrl = 'https://financialmodelingprep.com/api/v3/quote/'+favorite + '?apikey=v6wkuiy79ivhrkxaROaKTW3hCItUnZUA';
+const listBind = async (favoriteStr) =>{
+    console.log(favoriteStr)
+    if(favorite.length > 0){
+        const apiUrl = 'https://financialmodelingprep.com/api/v3/quote/' + favorite + '?apikey=v6wkuiy79ivhrkxaROaKTW3hCItUnZUA';
 
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            //console.log(data==[])
             const data = await response.json();
             let htmlstring="";
             data.forEach((element) =>{
@@ -132,7 +122,20 @@ const listBind = async (type) =>{
 }
 
 send_Symbol.addEventListener('click',()=>{
-    listBind(1)
+    if(symbol_input.value.length >= 1 && !favorite.includes(symbol_input.value,0)){
+        console.log(favorite.length)
+        if(favorite.length > 0){
+            favorite += ',' + symbol_input.value
+        }else{
+            favorite = symbol_input.value
+        }
+        symbol_input.value = ''
+        listBind(favorite)
+    }
 })
-
+setInterval(() => {
+    // 传递你的 favoriteStr 参数，例如 "AAPL,GOOGL,MSFT"
+    listBind(favorite);
+    //console.log('haha')
+}, 5000);
 //setInterval("listBind()","5000");

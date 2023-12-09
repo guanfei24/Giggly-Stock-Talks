@@ -4,7 +4,7 @@
     color: #ffffff;
     font-weight: 100;
 }
-body{background-color: #212b38f6}
+body{background-color: goldenrod}
 header{display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,7 @@ header h2{
 display: flex;
 font-size: 130%;
 }
-.chat{background-color: #37465b;
+.chat{background-color: darkgoldenrod;
     display: grid;
     margin: 1% 2%;
     padding: 0% 2%;

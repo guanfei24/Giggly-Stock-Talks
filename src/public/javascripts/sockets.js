@@ -103,6 +103,8 @@ const listBind = async (favoriteStr) =>{
             }
             const data = await response.json();
             let htmlstring="";
+            const status = getStatus();
+
             data.forEach((element) =>{
                 htmlstring +=
                     '    <tr>' +
@@ -112,7 +114,7 @@ const listBind = async (favoriteStr) =>{
                     '    <th scope=\'row\'>'+element.avgVolume+'</th>' +
                     '    <th scope=\'row\'>'+element.dayHigh+'</th>' +
                     '    <th scope=\'row\'>'+element.dayLow+'</th>' +
-                    '    <th scope=\'row\'> closed</th></tr>'
+                    '    <th scope=\'row\'>'+status +'</th></tr>'
             });
             stocks.innerHTML = '<table><tr><th scope="col">Symbol</th><th scope="col">Company Name</th><th scope="col">Current Price</th><th scope="col">AVG</th><th scope="col">High</th><th scope="col">Low</th><th scope="col">status</th></tr>' +htmlstring +'</table>'
         } catch (error) {
@@ -134,8 +136,24 @@ send_Symbol.addEventListener('click',()=>{
     }
 })
 setInterval(() => {
-    // 传递你的 favoriteStr 参数，例如 "AAPL,GOOGL,MSFT"
     listBind(favorite);
-    //console.log('haha')
 }, 5000);
-//setInterval("listBind()","5000");
+
+function getStatus() {
+    const now = new Date();
+    const startWorkingHours = new Date();
+    const endWorkingHours = new Date();
+
+    // Set the start time of working hours to 9:30 AM of the current day
+    startWorkingHours.setHours(9, 30, 0, 0);
+
+    //Set the end time of working hours to 4:00 PM of the day
+    endWorkingHours.setHours(16, 0, 0, 0);
+
+    // Determine whether the current time is within the working time range
+    if (now >= startWorkingHours && now <= endWorkingHours) {
+        return 'open';
+    } else {
+        return 'closed';
+    }
+}

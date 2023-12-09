@@ -33,6 +33,7 @@ app.set('port', process.env.PORT || 3000)
 
 const server = http.createServer(app)
 const routes = require('./routes/route')
+
 app.use('/', routes())
 server.listen(app.get('port'),()=>{
     console.log(`running at ${app.get('port')}`)
@@ -40,11 +41,9 @@ server.listen(app.get('port'),()=>{
 
 // Sokets settings:
 const socketio = require('socket.io')
-
+// Sokets create
 const sockets = socketio(server)
-
 sockets.on('connection', (socket)=>{
-
     exports.number = sockets.engine.clientsCount
 
     //console.log(exports.number)

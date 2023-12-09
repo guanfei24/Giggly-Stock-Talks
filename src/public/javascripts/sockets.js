@@ -135,7 +135,7 @@ const listBind = async (favoriteStr) =>{
 
 send_Symbol.addEventListener('click',()=>{
     if(symbol_input.value.length >= 1 && !favorite.includes(symbol_input.value,0)){
-        console.log(favorite.length)
+        //console.log(favorite.length)
         if(favorite.length > 0){
             favorite += ',' + symbol_input.value
         }else{
@@ -161,8 +161,7 @@ function getStatus() {
     endWorkingHours.setHours(16, 0, 0, 0);
 
     // Determine whether the current time is within the working time range
-    if (now >= startWorkingHours && now <= endWorkingHours) {
-        return 'open';
+    if (now.getDay() !== 0 && now.getDay() !== 6 && now >= startWorkingHours && now <= endWorkingHours) {        return 'open';
     } else {
         return 'closed';
     }

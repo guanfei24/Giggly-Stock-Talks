@@ -8,9 +8,9 @@ html(lang="en")
         title chat_room
     body
         .login
-            .form
+            form(action="/chat_room", method="post")
                 label(for="name") Welcome
                 input#name(name='user_name' type="text" placeholder='User name' minlength='4' maxlength='12' required)
-                button#login Log in
+                button Log in
     script(src="/socket.io/socket.io.js")
-    script(src="javascripts/login.js")
+    //script(src="javascripts/login.js")

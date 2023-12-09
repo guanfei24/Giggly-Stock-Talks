@@ -1,8 +1,9 @@
+
 const socket = io()
 
 const user = document.getElementById('name').innerHTML
 const l_online = document.getElementById('user').innerHTML
-const u_online = document.getElementById('users_online')
+//const u_online = document.getElementById('users_online')
 const hed = document.getElementById('hed')
 const chat_window = document.getElementById('chat_window')
 const chat_input = document.getElementById('chat_input')
@@ -11,14 +12,16 @@ let favorite = ''
 const symbol_input = document.getElementById('symbol_input')
 let stocks= document.getElementById('stocks')
 const send_Symbol = document.getElementById('sendSymbol')
+let number_count= document.getElementById('number_count')
+
 
 // Users online count
 socket.emit('online',{
-    u_online: u_online.innerHTML
+    //u_online: u_online.innerHTML
 })
 
 socket.on('users',(us)=>{
-    u_online.innerHTML = `online: ${us.u_online}`
+    //u_online.innerHTML = `online: ${us.u_online}`
 
 })
 
@@ -78,6 +81,13 @@ const type = () =>{
             hed.innerHTML = l_online
         }, 5000);
     })
+    socket.on('count_number',number=>{
+        number_count.innerHTML = 'online: '+ number
+        setTimeout(() => {
+            hed.innerHTML = l_online
+        }, 5000);
+    })
+
 }
 
 type()

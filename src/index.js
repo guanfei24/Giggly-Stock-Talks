@@ -4,9 +4,10 @@ const http = require('http')
 const path = require('path')
 const session = require('express-session')
 const bodyparser = require('body-parser')
+const existingUsernames = ['111'];
 
 /*
-    setting:    
+    setting:
 */
 const app = express()
 
@@ -18,7 +19,7 @@ app.set('views', path.join(__dirname,'./views'))
 // Estatic files:
 app.use(express.static(path.join(__dirname,'./public')))
 
-// Sessions: 
+// Sessions:
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(session({
     secret: 'something',
@@ -46,10 +47,14 @@ sockets.on('connection', (socket)=>{
 
     exports.number = sockets.engine.clientsCount
 
+    //console.log(exports.number)
     // Send messaje
     socket.on('messaje',(ms)=>{
         sockets.sockets.emit('send_messaje', ms)
     })
+
+    sockets.sockets.emit('count_number',exports.number)
+    //sockets.sockets.emit('name_list',existingUsernames)
 
     // Users online count
     socket.on('online',(onlin)=>{
